@@ -860,8 +860,8 @@ const CheckSlotAvailability = async (selectedDate) => {
   setSlotBookingData([]);
   setSelectedSlot(null);
 
-  // const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/SlotCheck/`;
-  const baseUrl = `http://3.110.153.69/api/SlotCheck/`;
+  const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/SlotCheck/`;
+  // const baseUrl = `http://3.110.153.69/api/SlotCheck/`;
  
   const payload = {
     "date": selectedDate,
