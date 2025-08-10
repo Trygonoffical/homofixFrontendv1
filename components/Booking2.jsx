@@ -38,7 +38,11 @@ const Booking = ({ cnames, title , cartItems , customer , couponID , PaymentAmou
   const [slotLoading, setSlotLoading] = useState(false);
   const [bookingProcessing, setBookingProcessing] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState(new Date());
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    // Initialize with current month/year to prevent past month selection
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const [isManualDateClick, setIsManualDateClick] = useState(false);
   const [paymentMethod , setPaymentMethod] = useState('Online')
@@ -972,7 +976,9 @@ const handleMouseMove = (e) => {
         
         // Reset date selection - no default date
         setBookingDate('');
-        setSelectedMonth(new Date());
+        // Always start with current month/year to prevent past month selection
+        const now = new Date();
+        setSelectedMonth(new Date(now.getFullYear(), now.getMonth(), 1));
         
         setBookingShow(true);
       }}>
@@ -1215,27 +1221,37 @@ const handleMouseMove = (e) => {
                       {Array.from({ length: 12 }, (_, i) => {
                         const month = new Date(selectedMonth.getFullYear(), i, 1);
                         const isCurrentMonth = month.getMonth() === selectedMonth.getMonth();
+                        const currentDate = new Date();
+                        const isPastMonth = selectedMonth.getFullYear() === currentDate.getFullYear() && i < currentDate.getMonth();
+                        const isPastYear = selectedMonth.getFullYear() < currentDate.getFullYear();
+                        const isDisabled = isPastMonth || isPastYear;
+                        
                         return (
                           <button
                             key={i}
+                            disabled={isDisabled}
                             className={`p-2 text-sm rounded ${
                               isCurrentMonth 
                                 ? 'bg-basecolor text-white' 
+                                : isDisabled
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                                 : 'bg-gray-100 hover:bg-gray-200'
                             }`}
-                                                         onClick={() => {
-                               const newMonth = new Date(selectedMonth.getFullYear(), i, 1);
-                               setSelectedMonth(newMonth);
-                               setShowMonthPicker(false);
-                               
-                               // Clear previous date selection when changing months
-                               const currentBookingDate = new Date(bookingDate);
-                               if (currentBookingDate.getMonth() !== i || currentBookingDate.getFullYear() !== selectedMonth.getFullYear()) {
-                                 setBookingDate('');
-                                 setSelectedSlot(null);
-                                 setSlotBookingData([]);
-                               }
-                             }}
+                            onClick={() => {
+                              if (!isDisabled) {
+                                const newMonth = new Date(selectedMonth.getFullYear(), i, 1);
+                                setSelectedMonth(newMonth);
+                                setShowMonthPicker(false);
+                                
+                                // Clear previous date selection when changing months
+                                const currentBookingDate = new Date(bookingDate);
+                                if (currentBookingDate.getMonth() !== i || currentBookingDate.getFullYear() !== selectedMonth.getFullYear()) {
+                                  setBookingDate('');
+                                  setSelectedSlot(null);
+                                  setSlotBookingData([]);
+                                }
+                              }
+                            }}
                           >
                             {month.toLocaleDateString('en-US', { month: 'short' })}
                           </button>
@@ -1243,18 +1259,33 @@ const handleMouseMove = (e) => {
                       })}
                     </div>
                     <div className="flex gap-2">
-                      <button
-                        className="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200"
-                        onClick={() => {
-                          setSelectedMonth(new Date(selectedMonth.getFullYear() - 1, selectedMonth.getMonth(), 1));
-                          // Clear date selection when changing year
-                          setBookingDate('');
-                          setSelectedSlot(null);
-                          setSlotBookingData([]);
-                        }}
-                      >
-                        {selectedMonth.getFullYear() - 1}
-                      </button>
+                      {(() => {
+                        const currentYear = new Date().getFullYear();
+                        const previousYear = selectedMonth.getFullYear() - 1;
+                        const isPreviousYearDisabled = previousYear < currentYear;
+                        
+                        return (
+                          <button
+                            disabled={isPreviousYearDisabled}
+                            className={`px-3 py-1 text-sm rounded ${
+                              isPreviousYearDisabled 
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                                : 'bg-gray-100 hover:bg-gray-200'
+                            }`}
+                            onClick={() => {
+                              if (!isPreviousYearDisabled) {
+                                setSelectedMonth(new Date(selectedMonth.getFullYear() - 1, selectedMonth.getMonth(), 1));
+                                // Clear date selection when changing year
+                                setBookingDate('');
+                                setSelectedSlot(null);
+                                setSlotBookingData([]);
+                              }
+                            }}
+                          >
+                            {previousYear}
+                          </button>
+                        );
+                      })()}
                       <button
                         className="px-3 py-1 text-sm bg-blue-500 text-white rounded"
                       >
