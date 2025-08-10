@@ -1430,7 +1430,7 @@ const handleMouseMove = (e) => {
                           slot.status === 'available' && slot.remaining_slots > 0
                             ? selectedSlot?.slot === slot.slot
                               ? 'bg-basecolor text-white border-basecolor shadow-lg'
-                              : 'bg-white text-gray-700 border-gray-300 hover:border-basecolor hover:text-white hover:bg-basecolor'
+                              : 'bg-white text-gray-700 border-gray-300  '
                             : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                         }`}
                         onClick={() => {
@@ -1483,7 +1483,7 @@ const handleMouseMove = (e) => {
                     value='Online' 
                     onChange={() => handlePaymentChange('Online')}
                     checked={paymentMethod === 'Online'}
-                    className="mr-3"
+                    className="mr-1"
                   />
                   <label htmlFor="payment-online" className="text-gray-700">Make Payment Online</label>
                 </div>
@@ -1496,7 +1496,7 @@ const handleMouseMove = (e) => {
                     value='Cash'
                     onChange={() => handlePaymentChange('Cash')}
                     checked={paymentMethod === 'Cash'}
-                    className="mr-3"
+                    className="mr-1"
                   />
                   <label htmlFor="payment-cash" className="text-gray-700">Cash on Service</label>
                 </div>
