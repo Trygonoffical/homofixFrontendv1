@@ -35,6 +35,7 @@ const Booking = ({ cnames, title , cartItems , customer , couponID , PaymentAmou
   const [slotBookingShow, setSlotBookingShow] = useState(false);
   const [slotBookingData, setSlotBookingData] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [paymentMethodShow, setPaymentMethodShow] = useState(false);
   const [slotLoading, setSlotLoading] = useState(false);
   const [bookingProcessing, setBookingProcessing] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -1079,6 +1080,7 @@ const handleMouseMove = (e) => {
                         setSlotBookingData([]);
                         setBookingProcessing(false);
                         setErrorMsg('');
+                        setPaymentMethodShow(false);
                       }}
                       >
                       Book Slot
@@ -1193,7 +1195,7 @@ const handleMouseMove = (e) => {
             
             <div  className="ml-2">
               <span className="sr-only">Homofix Company</span>
-              <h2 className="text-xl font-semibold">Slot Booking</h2>
+              <h2 className="text-xl font-semibold">Slot Booking </h2>
             </div>
             </button>
           </div>
@@ -1470,84 +1472,136 @@ const handleMouseMove = (e) => {
             </div>
           </div>
           
-          {/* Fixed Payment Section at Bottom */}
+          {/* Fixed Payment Method Button at Bottom */}
           {!slotLoading && slotBookingData.length > 0 && selectedSlot && (
             <div className='border-t bg-white p-6 flex-shrink-0 shadow-lg' data-payment-section>
-              <h3 className="font-semibold mb-3">Payment Method</h3>
-              <div className='flex justify-between space-y-3 mb-4'>
-                <div className="flex items-center">
-                  <input 
-                    type="radio" 
-                    name="PAYMENT" 
-                    id="payment-online" 
-                    value='Online' 
-                    onChange={() => handlePaymentChange('Online')}
-                    checked={paymentMethod === 'Online'}
-                    className="mr-1"
-                  />
-                  <label htmlFor="payment-online" className="text-gray-700">Make Payment Online</label>
-                </div>
-                
-                <div className="flex items-center" style={{marginTop:'0px'}}>
-                  <input 
-                    type="radio" 
-                    name="PAYMENT" 
-                    id="payment-cash"
-                    value='Cash'
-                    onChange={() => handlePaymentChange('Cash')}
-                    checked={paymentMethod === 'Cash'}
-                    className="mr-1"
-                  />
-                  <label htmlFor="payment-cash" className="text-gray-700">Cash on Service</label>
-                </div>
-              </div>
-
-              {/* Booking Buttons */}
-              <div>
-                {paymentMethod === 'Online' ? (
-                  <button 
-                    className={`w-full py-3 px-6 rounded-lg font-medium transition-all bg-basecolor ${
-                      bookingProcessing 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-blue-600 hover:bg-blue-700'
-                    } text-white`}
-                    onClick={handleOnlinePaymentWithProcessing}
-                    disabled={bookingProcessing}
-                  >
-                    {bookingProcessing ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Processing...
-                      </div>
-                    ) : (
-                      'Pay Now'
-                    )}
-                  </button>
-                ) : (
-                  <button 
-                    className={`w-full py-3 px-6 rounded-lg font-medium transition-all bg-basecolor ${
-                      bookingProcessing 
-                        ? 'bg-gray-400 cursor-not-allowed' 
-                        : 'bg-green-600 hover:bg-green-700'
-                    } text-white`}
-                    onClick={handleOfflinePaymentWithProcessing}
-                    disabled={bookingProcessing}
-                  >
-                    {bookingProcessing ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Processing...
-                      </div>
-                    ) : (
-                      'Book Now (Cash on Service)'
-                    )}
-                  </button>
-                )}
-              </div>
+              <button 
+                className="w-full py-3 px-6 rounded-lg font-medium transition-all bg-basecolor text-white hover:bg-blue-700"
+                onClick={() => setPaymentMethodShow(true)}
+              >
+                Choose Payment Method
+              </button>
             </div>
           )}
         </Dialog.Panel>
       </Dialog>
+
+      {/* Payment Method Dialog */}
+      <Dialog as="div" open={paymentMethodShow} onClose={() => setPaymentMethodShow(false)}>
+        {/* Dialog content */}
+        <div className="fixed inset-0 z-[1300]" />
+
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-[1300] w-full bg-white sm:max-w-md sm:ring-1 sm:ring-gray-900/10 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-start border-b-2 pb-3 px-6 py-6 flex-shrink-0">
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700 flex justify-start"
+              onClick={() => setPaymentMethodShow(false)}
+            >
+              <span className="sr-only">Back menu</span>
+              <ArrowLeftIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <div className="ml-2">
+              <span className="sr-only">Homofix Company</span>
+              <h2 className="text-xl font-semibold">Payment Methods</h2>
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto px-6">
+            <div className="my-6 flow-root">
+              <div className="divide-gray-500/10">
+                
+                {/* UPI/Credit/Debit Card Option */}
+                <div className="mb-4">
+                  <button
+                    onClick={() => handlePaymentChange('Online')}
+                    className={`w-full text-left bg-white border-2 rounded-lg p-4 transition-all duration-200 hover:border-blue-300 ${
+                      paymentMethod === 'Online' 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200 hover:border-blue-300'
+                    }`}
+                  >
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900">UPI/Credit/Debit Card</h3>
+                        <p className="text-sm text-gray-500">Secure online payment</p>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+                {/* Cash on Service Option */}
+                <div className="mb-4">
+                  <button
+                    onClick={() => handlePaymentChange('Cash')}
+                    className={`w-full text-left bg-white border-2 rounded-lg p-4 transition-all duration-200 hover:border-green-300 ${
+                      paymentMethod === 'Cash' 
+                        ? 'border-green-500 bg-green-50' 
+                        : 'border-gray-200 hover:border-green-300'
+                    }`}
+                  >
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                          <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662c.721-.481 1.324-1.32 1.324-2.246 0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31A4.46 4.46 0 0011 7.092V5z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-gray-900">Cash on Service</h3>
+                        <p className="text-sm text-gray-500">Pay after service completion</p>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          {/* Fixed Action Button at Bottom */}
+          <div className='border-t bg-white p-6 flex-shrink-0 shadow-lg'>
+            <button 
+              className={`w-full py-3 px-6 rounded-lg font-medium transition-all text-white ${
+                paymentMethod === 'Online' 
+                  ? 'bg-blue-600 hover:bg-blue-700' 
+                  : 'bg-green-600 hover:bg-green-700'
+              }`}
+              onClick={() => {
+                if (paymentMethod === 'Online') {
+                 // setPaymentMethodShow(false);
+                  //setSlotBookingShow(false); // Close slot booking dialog too
+                  handleOnlinePaymentWithProcessing();
+                } else {
+                 // setPaymentMethodShow(false);
+                 // setSlotBookingShow(false); // Close slot booking dialog too
+                  handleOfflinePaymentWithProcessing();
+                }
+              }}
+              disabled={bookingProcessing}
+            >
+              {bookingProcessing ? (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                  Processing...
+                </div>
+              ) : paymentMethod === 'Online' ? (
+                'Pay Now'
+              ) : (
+                'Book Now (Cash on Service)'
+              )}
+            </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+
       {/* Congratulation Dialog */}
 
       <Dialog as="div" open={congBookingShow} onClose={() => setCongBookingShow(false)}>
