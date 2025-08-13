@@ -622,40 +622,116 @@ const handleOfflinePayment = () => {
     postData();
   }
   const getLocation = async (latitude, longitude) => {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-    // //console.log('usprofile', userProfileInfo)
+    // Using Google Geocoding API for more accurate results
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY; // You'll need to add this to your .env.local
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}&language=en`;
+    
     setLoading(true);
     try {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        // //console.log( 'address',  data)
+        console.log('Google Geocoding response:', data);
+        
+        if (data.status === 'OK' && data.results.length > 0) {
+          const result = data.results[0];
+          const addressComponents = result.address_components;
+          
+          // Extract address components
+          const address = {
+            street_number: '',
+            route: '',
+            sublocality: '',
+            locality: '',
+            administrative_area_level_1: '',
+            postal_code: '',
+            formatted_address: result.formatted_address
+          };
+          
+          // Parse address components
+          addressComponents.forEach(component => {
+            const types = component.types;
+            if (types.includes('street_number')) {
+              address.street_number = component.long_name;
+            } else if (types.includes('route')) {
+              address.route = component.long_name;
+            } else if (types.includes('sublocality_level_1') || types.includes('sublocality')) {
+              address.sublocality = component.long_name;
+            } else if (types.includes('locality')) {
+              address.locality = component.long_name;
+            } else if (types.includes('administrative_area_level_1')) {
+              address.administrative_area_level_1 = component.long_name;
+            } else if (types.includes('postal_code')) {
+              address.postal_code = component.long_name;
+            }
+          });
+          
+          setAddress(address);
+          
+          // Set form fields with extracted data
+          if (address) {
+            // Combine street number and route for full address
+            const fullAddress = [address.street_number, address.route].filter(Boolean).join(' ');
+            setAdd(fullAddress || address.formatted_address);
+            setName(name || '');
+            setArea(address.sublocality || '');
+            setCity(address.locality || '');
+            setState(address.administrative_area_level_1 || '');
+            setZip(address.postal_code || '');
+          }
+          
+        } else {
+          console.error('Google Geocoding API returned no results');
+          // Fallback to OpenStreetMap if Google fails
+          await getLocationFallback(latitude, longitude);
+        }
+        
+      } else {
+        console.error('Failed to retrieve address from Google API');
+        // Fallback to OpenStreetMap if Google fails
+        await getLocationFallback(latitude, longitude);
+      }
+    } catch (error) {
+      console.error('Error occurred while retrieving address from Google API:', error);
+      // Fallback to OpenStreetMap if Google fails
+      await getLocationFallback(latitude, longitude);
+    }
+    setLoading(false);
+  }
+
+  // Fallback function using OpenStreetMap
+  const getLocationFallback = async (latitude, longitude) => {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&accept-language=en`;
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        console.log('OpenStreetMap fallback response:', data);
+        
         const address = {
           road: data.address.state_district,
           city: data.address.city,
           state: data.address.state,
-          residential :  data.address.residential,
-          postcode :  data.address.postcode,
-          state_district :  data.address.state_district,
-          // Add additional address components as needed
+          residential: data.address.residential,
+          postcode: data.address.postcode,
+          state_district: data.address.state_district,
         };
-        setAddress(address);
-        if(address){
-            setAdd(address.residential || '');
-            setName(name || '');
-            setArea(address.road || '');
-            setCity(address.city || '');
-            setState(address.state || '');
-            setZip(address.postcode || '');
-        }
         
+        setAddress(address);
+        if (address) {
+          setAdd(data.display_name || '');
+          setName(name || '');
+          setArea(address.road || '');
+          setCity(address.city || '');
+          setState(address.state || '');
+          setZip(address.postcode || '');
+        }
       } else {
-        console.error('Failed to retrieve address');
+        console.error('Failed to retrieve address from fallback API');
       }
     } catch (error) {
-      console.error('Error occurred while retrieving address:', error);
+      console.error('Error occurred while retrieving address from fallback API:', error);
     }
-    setLoading(false);
   }
 
   const handleLocation = () => {
@@ -663,6 +739,7 @@ const handleOfflinePayment = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
           getLocation(position.coords.latitude, position.coords.longitude);
@@ -675,6 +752,7 @@ const handleOfflinePayment = () => {
       console.error('Geolocation is not supported by this browser');
     }
     setLoading(false);
+    // console.log('location position', position)
   };
 // Update input fields when the address state changes
   useEffect(() => {
@@ -1070,7 +1148,7 @@ const handleMouseMove = (e) => {
                </>
             }
             <div className="mt-2">
-                                <button className='w-full bg-basecolor text-white py-2 px-9 mx-auto '
+                                <button className='w-full py-3 px-6 rounded-lg font-medium transition-all bg-basecolor text-white hover:bg-blue-700'
                       onClick={() => {
                         setBookingShow(false)
                         setSlotBookingShow(true)
