@@ -1522,7 +1522,7 @@ const handleMouseMove = (e) => {
                       >
                         <div className="flex items-center justify-center">
                           <span className="mr-1">🕐</span>
-                          <span className="font-medium text-sm">{slot.time}</span>
+                          <span className="font-medium text-sm" style={{fontSize: '14px'}}>{slot.time}</span>
                         </div>
                         {/* <div className="text-xs text-gray-500 mt-1">
                           {slot.remaining_slots} slots left
