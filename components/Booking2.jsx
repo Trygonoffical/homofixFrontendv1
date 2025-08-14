@@ -1516,11 +1516,11 @@ const handleMouseMove = (e) => {
               {!slotLoading && slotBookingData.length > 0 && (
                 <div className='py-3'>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Available Time Slots</h3>
-                  <div className='grid grid-cols-2 gap-3'>
+                  <div className='grid grid-cols-2 gap-4'>
                     {slotBookingData.map((slot) => (
                       <button
                         key={slot.slot}
-                        className={`p-1 rounded-lg text-center transition-all border ${
+                        className={`p-1 py-2 rounded-lg text-center transition-all border ${
                           slot.status === 'available' && slot.remaining_slots > 0
                             ? selectedSlot?.slot === slot.slot
                               ? 'bg-basecolor text-white border-basecolor shadow-lg'

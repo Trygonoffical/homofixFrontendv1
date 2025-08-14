@@ -88,7 +88,8 @@ const BookingTab = ({bookings , userProfileInfo}) => {
     const statesWithCities = {
         "Delhi": ["New Delhi", "Delhi"],
         "Uttar Pradesh": ["Noida", "Kanpur", "Ghaziabad"],
-        "Haryana": ["Gurugram"]
+        "Haryana": ["Gurugram"],
+        "Telangana": ["Hyderabad"]
     };
 
     const handleCitynewChange = (e) => {
