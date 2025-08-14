@@ -11,7 +11,8 @@ import { XMarkIcon} from '@heroicons/react/24/outline'
 import Link from 'next/link';
 import Loading from './Loading';
 import { useRouter } from 'next/navigation';
-import { ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { ArrowLeftIcon, MapIcon } from '@heroicons/react/20/solid';
+import { MapPinIcon } from '@heroicons/react/24/solid';
 
 // import Easebuzz from "./Easebuzz";
 
@@ -36,7 +37,17 @@ const Booking = ({ cnames, title , cartItems , customer , couponID , PaymentAmou
   const [slotBookingData, setSlotBookingData] = useState([]);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [paymentMethodShow, setPaymentMethodShow] = useState(false);
+  const [showAddressForm, setShowAddressForm] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
   const [slotLoading, setSlotLoading] = useState(false);
+  
+  // Sync selectedState and selectedCity with actual state and city values when edit dialog opens
+  useEffect(() => {
+    if (showEditDialog) {
+      setSelectedState(state);
+      setSelectedCity(city);
+    }
+  }, [showEditDialog, state, city]);
   const [bookingProcessing, setBookingProcessing] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(() => {
@@ -1052,6 +1063,8 @@ const handleMouseMove = (e) => {
         setSlotBookingData([]);
         setBookingProcessing(false);
         setErrorMsg('');
+        setShowAddressForm(false);
+        setShowEditDialog(false);
         
         // Reset date selection - no default date
         setBookingDate('');
@@ -1087,48 +1100,49 @@ const handleMouseMove = (e) => {
           <div className="my-6 flow-root">
             <div className="my-6  divide-gray-500/10">
               {/* <h2>Name</h2> */}
-              <label htmlFor="State">Name</label>
+              <label htmlFor="State" className='text-lg font-semibold text-gray-900 mb-2'>Booking Address</label>
 
-              <input type="text" value={name }  className="w-full py-2 my-2 border-indigo-800" onChange={handleNameChange} required />
-              <p className='text-[red] text-sm'>{errormsgName}</p> 
-               <button className='my-2 text-basecolor' onClick={handleLocation}>Get Location</button> <br /> <br />
+              {/* <input type="text" value={name }  className="w-full py-2 my-2 border-indigo-800" onChange={handleNameChange} required />
+              <p className='text-[red] text-sm'>{errormsgName}</p>  */}
+               {/* <button className='my-2 text-basecolor' onClick={handleLocation}>Get Location</button> <br /> <br /> */}
               {loading ? <Loading /> :   <>
-               <label htmlFor="Address">Full Address</label>
-                <input type="text" value={add} onChange={handleAddChange} className="w-full py-2 my-2 border-indigo-800"  />
-                <p className='text-[red] text-sm'>{errormsgadd}</p> 
+              {/* Address Display Card */}
+              <div className="bg-white border border-gray-200 rounded-lg p-4 my-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-gray-900 flex items-center"> <MapPinIcon className="w-5 h-5 mr-2 bg-basecolor text-white rounded-full p-1" /> Address</h3>
+                  <button 
+                    type="button"
+                    onClick={() => setShowEditDialog(true)}
+                    className="text-basecolor hover:text-blue-700 text-sm font-medium transition-colors duration-200"
+                  >
+                    Change
+                  </button>
+                </div>
+                
+                {/* Display Address */}
+                <div className="text-gray-700">
+                  <p className='text-sm text-gray-600 font-semibold'>{name}</p>
+                  <p className="mb-1">{add || 'No address set'}</p>
+                  <p className="text-sm text-gray-600">
+                    {area && `${area}, `}
+                    {city && `${city}, `}
+                    {state && `${state}, `}
+                    {zip && `${zip}`}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {gstNo && `GST No: ${gstNo}`}
+                  </p>
+                </div>
+              </div> 
                 {/* <label htmlFor="Area">Near By</label>
                 <input type="text" value={area} onChange={handleAreaChange}  className="w-full py-2 my-2 border-indigo-800"  /> */}
                 {/* <label htmlFor="city">City</label>
                 <input type="text" value={city} onChange={handleCityChange} className="w-full py-2 my-2 border-indigo-800"  /> */}
-                <p className='text-[red] text-sm' >{errormsgadrea}</p>
-                <label htmlFor="state">State</label>
-                <select id="state" value={selectedState} onChange={handleStatenewChange} className="w-full py-2 my-2 border-indigo-800">
-                    {/* <option value="">Select a state</option> */}
-                    {/* {state === '' ?  <option value="" >Select a state</option> :  <option value={state} >{state}</option>} */}
-                    <option value="" >Select a state</option>
-                    {Object.keys(statesWithCities).map((state) => (
-                        <option key={state} value={state}>
-                            {state}
-                        </option>
-                    ))}
-                </select>
 
-                <label htmlFor="city">City</label>
-                <select id="city" value={selectedCity} onChange={handleCitynewChange} className="w-full py-2 my-2 border-indigo-800">
-                <option value="">Select a city</option>
-                    {selectedState && statesWithCities[selectedState] && statesWithCities[selectedState].map((city, index) => (
-                        <option key={index} value={city}>
-                            {city}
-                        </option>
-                    ))}
-                </select>
-                {/* <p className='text-[red] text-sm'>{cityerrormsg}</p> */}
-                {/* <label htmlFor="State">State</label>
-                <input type="text" value={state} onChange={handleStateChange} className="w-full py-2 my-2 border-indigo-800"  /> */}
-                <label htmlFor="Pincode">Pincode </label>
-                <input type="text" value={zip} onChange={handleZipChange} className="w-full py-2 my-2 border-indigo-800"  />
+
+
               
-                <div className=" pb-5 ">
+                {/* <div className=" pb-5 ">
                     <div className="lable">
                         <h4>GST Number (Optional)</h4>
                         <p className='text-sm text-gray-400'>Your business GST number for invoicing</p>
@@ -1144,7 +1158,7 @@ const handleMouseMove = (e) => {
                         />
                         {gstError && <p className='text-[red] text-sm'>{gstError}</p>}
                     </div>
-                </div>
+                </div> */}
                </>
             }
             <div className="mt-2">
@@ -1676,6 +1690,203 @@ const handleMouseMove = (e) => {
                 'Book Now'
               )}
             </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+
+      {/* Edit Address & GST Dialog */}
+      <Dialog as="div" open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+        {/* Dialog content */}
+        <div className="fixed inset-0 z-[1300]" />
+
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-[1300] w-full bg-white sm:max-w-md sm:ring-1 sm:ring-gray-900/10 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b-2 pb-3 px-6 py-6 flex-shrink-0">
+            <h2 className="text-xl font-semibold text-gray-900">Edit Details</h2>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setShowEditDialog(false)}
+            >
+              <span className="sr-only">Close menu</span>
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto px-6">
+            <div className="my-6 flow-root">
+              <div className="divide-gray-500/10">
+                
+                {/* Name Field */}
+                <div className="mb-4">
+                  <label htmlFor="editName" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="editName"
+                    value={name} 
+                    onChange={handleNameChange} 
+                    className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" 
+                    placeholder="Enter your full name"
+                    required 
+                  />
+                  {errormsgName && <p className='text-red-500 text-sm mt-1'>{errormsgName}</p>}
+                </div>
+
+                {/* Get Location Button */}
+                {/* <div className="mb-6">
+                  <button 
+                    className='w-full py-3 px-4 bg-basecolor text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium' 
+                    onClick={handleLocation}
+                  >
+                    📍 Get Current Location
+                  </button>
+                </div> */}
+
+                {/* Address Fields */}
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <label htmlFor="editAddress" className="block text-sm font-medium text-gray-700 mb-2">Full Address</label>
+                    <input 
+                      type="text" 
+                      id="editAddress"
+                      value={add} 
+                      onChange={handleAddChange} 
+                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" 
+                      placeholder="Enter your complete address"
+                    />
+                    {errormsgadd && <p className='text-red-500 text-sm mt-1'>{errormsgadd}</p>}
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="editArea" className="block text-sm font-medium text-gray-700 mb-2">Area/Locality</label>
+                    <input 
+                      type="text" 
+                      id="editArea"
+                      value={area} 
+                      onChange={handleAreaChange} 
+                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" 
+                      placeholder="Enter your area or locality"
+                    />
+                    {errormsgadrea && <p className='text-red-500 text-sm mt-1'>{errormsgadrea}</p>}
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="editState" className="block text-sm font-medium text-gray-700 mb-2">State</label>
+                    <select 
+                      id="editState" 
+                      value={state} 
+                      onChange={handleStatenewChange} 
+                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                    >
+                      <option value="">Select a state</option>
+                      {Object.keys(statesWithCities).map((stateOption) => (
+                        <option key={stateOption} value={stateOption}>
+                          {stateOption}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="editCity" className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                    <select 
+                      id="editCity" 
+                      value={city} 
+                      onChange={handleCitynewChange} 
+                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                    >
+                      <option value="">Select a city</option>
+                      {state && statesWithCities[state] && statesWithCities[state].map((cityOption, index) => (
+                        <option key={index} value={cityOption}>
+                          {cityOption}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="editPincode" className="block text-sm font-medium text-gray-700 mb-2">Pincode</label>
+                    <input 
+                      type="text" 
+                      id="editPincode"
+                      value={zip} 
+                      onChange={handleZipChange} 
+                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200" 
+                      placeholder="Enter pincode"
+                    />
+                  </div>
+                </div>
+
+                {/* GST Number Section */}
+                <div className="mb-6">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="text-sm font-medium text-gray-900 mb-2">GST Number (Optional)</h4>
+                    <p className='text-sm text-gray-500 mb-3'>Your business GST number for invoicing</p>
+                    <input 
+                      type="text" 
+                      id="editGst"
+                      className='w-full py-3 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200' 
+                      value={gstNo} 
+                      onChange={handleGstChange}
+                      placeholder="Enter 15-digit GST number"
+                      maxLength={15}
+                    />
+                    {gstError && <p className='text-red-500 text-sm mt-1'>{gstError}</p>}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          {/* Fixed Action Buttons at Bottom */}
+          <div className='border-t bg-white p-6 flex-shrink-0 shadow-lg'>
+            <div className="flex gap-3">
+              <button 
+                type="button"
+                onClick={() => setShowEditDialog(false)}
+                className="flex-1 px-4 py-3 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+              >
+                Cancel
+              </button>
+              <button 
+                type="button"
+                onClick={() => {
+                  // Validate and save
+                  let hasErrors = false;
+                  
+                  if (!name) {
+                    setErrorMsgName('Please enter your name');
+                    hasErrors = true;
+                  }
+                  
+                  if (!add) {
+                    setErrorMsgAdd('Please enter full address');
+                    hasErrors = true;
+                  }
+                  
+                  if (!area) {
+                    setErrorMsgArea('Please enter area');
+                    hasErrors = true;
+                  }
+                  
+                  if (!city || !state || !zip) {
+                    hasErrors = true;
+                  }
+                  
+                  if (!hasErrors) {
+                    setShowEditDialog(false);
+                    setErrorMsgName('');
+                    setErrorMsgAdd('');
+                    setErrorMsgArea('');
+                  }
+                }}
+                className="flex-1 px-4 py-3 text-sm font-medium text-white bg-basecolor rounded-lg hover:bg-blue-700 transition-colors duration-200"
+              >
+                Save Changes
+              </button>
+            </div>
           </div>
         </Dialog.Panel>
       </Dialog>
