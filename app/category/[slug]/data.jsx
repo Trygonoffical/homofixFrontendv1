@@ -1,15 +1,14 @@
-
 'use client'
 // import Styles from '../../../styles/Product.module.css';
 // import Link from "next/link"
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, useContext, useRef } from "react";
-import { TagIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, TagIcon } from '@heroicons/react/20/solid'
 // import { AuthContext } from './AuthContext'
 import { AuthContext } from '@/components/AuthContext'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import {AuthServices} from '@/components/AuthServices'
-import {Booking} from '@/components/Booking2'
+import {Booking} from '@/components/Booking'
 import Faq from '@/components/Faq'
 import Loading from '@/components/Loading'
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
@@ -27,7 +26,7 @@ const [discount , setDiscount] = useState('')
 const [loading, setLoading] = useState(false);
 const [cartVisible, setCartVisible] = useState(true);
 const cartRef = useRef(null);
-
+const [isExpanded, setIsExpanded] = useState(false);
 
 useEffect(() => {
   const options = {
@@ -250,7 +249,7 @@ const handleVerificationCoupon = async () => {
         <h1 className="text-3xl font-bold text-white">{subCat.name}</h1>
         {/* <img src={subCat.subcategory_image} alt={subCat.Category_name} width={250} /> */}
     </div>
-    <div className="grid md:grid-cols-3 gap-3 py-12">
+    <div className="grid md:grid-cols-3 gap-3 py-6">
         {/* <div></div> */}
         <div className="md:col-span-2 p-4 md:px-16">
              {/* Render subcategories */}
@@ -444,8 +443,10 @@ const handleVerificationCoupon = async () => {
   </div>
     </div>
 
+
+
+    
   </section>
- 
   {subCat.legal_pages.length>0 && (
     <>
     <div className="block md:hidden w-full border-t border-gray-200">
