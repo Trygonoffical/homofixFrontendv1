@@ -6,7 +6,7 @@ import { TagIcon, ArrowLeftIcon } from '@heroicons/react/20/solid'
 import { AuthContext } from '@/components/AuthContext'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { AuthServices } from '@/components/AuthServices'
-import { Booking } from '@/components/Booking'
+import { Booking } from '@/components/Booking2'
 import Faq from '@/components/Faq'
 import Loading from '@/components/Loading'
 
