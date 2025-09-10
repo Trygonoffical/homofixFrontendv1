@@ -214,6 +214,32 @@ const BookingTab = ({bookings , userProfileInfo}) => {
         return slotTimes[slotNumber] || `Slot ${slotNumber}`;
     }
 
+    const getTimeFromBookingDate = (bookingDate) => {
+        if (!bookingDate) return 'Time not available';
+        
+        try {
+            const date = new Date(bookingDate);
+            return date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+        } catch (error) {
+            console.error('Error parsing booking date:', error);
+            return 'Time not available';
+        }
+    }
+
+    const getDisplayTime = (booking) => {
+        // If slot is provided and not null/undefined, use slot time
+        if (booking.slot !== null && booking.slot !== undefined) {
+            return getSlotTime(booking.slot);
+        }
+        
+        // If slot is null/undefined, extract time from booking_date
+        return getTimeFromBookingDate(booking.booking_date);
+    }
+
     const getStatusBadge = (status) => {
         const statusConfig = {
             "Completed": { bg: "bg-emerald-100", text: "text-emerald-800", border: "border-emerald-200", label: "Completed" },
@@ -344,7 +370,7 @@ const BookingTab = ({bookings , userProfileInfo}) => {
                                                                 </div>
                                                                 <div className="flex justify-between">
                                                                     <span className="text-gray-600">Time:</span>
-                                                                    <span className="font-medium text-gray-900">{getSlotTime(booking.slot)}</span>
+                                                                    <span className="font-medium text-gray-900">{getDisplayTime(booking)}</span>
                                                                 </div>
                                                                 <div className="flex justify-between">
                                                                     <span className="text-gray-600">Payment Method:</span>
