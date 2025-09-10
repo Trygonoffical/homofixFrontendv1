@@ -953,10 +953,7 @@ const CheckSlotAvailability = async (selectedDate) => {
   setSlotLoading(true);
   setSlotBookingData([]);
   setSelectedSlot(null);
-
   const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/SlotCheck/`;
-  // const baseUrl = `http://3.110.153.69/api/SlotCheck/`;
- 
   const payload = {
     "date": selectedDate,
     "zipcode": zip,
@@ -964,7 +961,6 @@ const CheckSlotAvailability = async (selectedDate) => {
   }
   console.log('Slotpayload:', payload);
   try {
-    
     const response = await fetch(baseUrl, {
       method: "POST",
       headers: {
@@ -973,11 +969,9 @@ const CheckSlotAvailability = async (selectedDate) => {
       },
       body: JSON.stringify(payload),
     });
-    
     if (response.ok) {
       const data = await response.json();
       console.log('Slot availability data:', data);
-      
       // Filter slots based on current time if selected date is today
       const filteredSlots = filterSlotsForToday(data.slots || [], selectedDate);
       setSlotBookingData(filteredSlots);
@@ -1819,7 +1813,7 @@ const handleMouseMove = (e) => {
                 </div>
 
                 {/* GST Number Section */}
-                <div className="mb-6">
+                {/* <div className="mb-6">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <h4 className="text-sm font-medium text-gray-900 mb-2">GST Number (Optional)</h4>
                     <p className='text-sm text-gray-500 mb-3'>Your business GST number for invoicing</p>
@@ -1834,7 +1828,7 @@ const handleMouseMove = (e) => {
                     />
                     {gstError && <p className='text-red-500 text-sm mt-1'>{gstError}</p>}
                   </div>
-                </div>
+                </div> */}
 
               </div>
             </div>

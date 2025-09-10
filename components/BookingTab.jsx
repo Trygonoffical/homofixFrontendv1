@@ -618,7 +618,7 @@ const BookingTab = ({bookings , userProfileInfo}) => {
                                             </div>
 
                                             {/* GST Number */}
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+                                            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                                                 <div className="md:col-span-1">
                                                     <label className="block text-sm font-medium text-gray-700 mb-2">GST Number (Optional)</label>
                                                     <p className="text-sm text-gray-500">Your business GST number for invoicing</p>
@@ -634,7 +634,7 @@ const BookingTab = ({bookings , userProfileInfo}) => {
                                                     />
                                                     {gstError && <p className="mt-2 text-sm text-red-600">{gstError}</p>}
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                             {/* Zipcode */}
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">

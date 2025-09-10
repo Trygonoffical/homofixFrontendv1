@@ -13,7 +13,7 @@ const blogs = () => {
   return (
     <>
         <Tophead slug={'Terms & Conditions'} />
-        <LegalData url='https://support.homofixcompany.com/api/Legal-Page-Get/2/' />
+        <LegalData url={`${process.env.NEXT_PUBLIC_API_URL}/Legal-Page-Get/2/`} />
         {/* <Callbox /> */}
     </>
   )

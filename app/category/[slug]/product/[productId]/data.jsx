@@ -103,10 +103,10 @@ const ProductDetailPage = ({ params }) => {
 
   const handleVerificationCoupon = async () => {
     try {
+      console.log('check coupon')
       const cupurl = `/api/coupon/?code=${coupon}`;
       const response = await fetch(cupurl);
       const result = await response.json();
-
       if (response) {
         if (result.message) {
           setCouponMsg(result.message);
@@ -471,14 +471,14 @@ const ProductDetailPage = ({ params }) => {
         </div>
       )}
       {/* Legal Pages */}
-      {subCat.legal_pages && subCat?.legal_pages?.length > 0 && (
+      {/* {subCat.legal_pages && subCat?.legal_pages?.length > 0 && (
         <div className="py-6 w-full p-2 mt-8 border-t">
           <div
             className="productpoints text-md"
             dangerouslySetInnerHTML={{ __html: subCat.legal_pages[0].content }}
           />
         </div>
-      )}
+      )} */}
     </section>
   );
 };
