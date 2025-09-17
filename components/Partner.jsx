@@ -26,8 +26,8 @@ import Link from "next/link"
 export default function Partner() {
   return (
     <section className="container mx-auto mt-16 mb-16 p-2">
-        <div className="bg-gradient-to-r from-basecolor to-lightbasecolor rounded-2xl overflow-hidden shadow-2xl">
-            <div className="grid md:grid-cols-2 gap-8 items-center  px-8 lg:px-12">
+        <div className="bg-gradient-to-r from-basecolor to-lightbasecolor rounded-2xl overflow-hidden shadow-2xl px-8 lg:px-12">
+            <div className="grid md:grid-cols-2 gap-8 items-center  ">
                 <div className="text-white space-y-6 mt-12 md:mt-0">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
                         Become a <span className="text-yellow-400">HomOfix Company Expert</span>
