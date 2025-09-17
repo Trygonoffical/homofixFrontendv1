@@ -33,7 +33,7 @@ export default function Partner() {
                         Become a <span className="text-yellow-400">HomOfix Company Expert</span>
                     </h2>
                     <p className="text-lg md:text-xl text-blue-100">
-                    Become a HomOfix Company Expert and unlock financial stability, growth, and recognition for your skills.
+                    HomOfix Company ensures financial stability and growth for our Service Experts.  Improve your skills, deliver better service, and satisfy more customers, and you will earn more and grow exponentially.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/experts" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
