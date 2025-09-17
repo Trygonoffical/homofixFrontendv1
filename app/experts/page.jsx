@@ -230,8 +230,7 @@ export default function PartnerPage() {
                 <span className="text-yellow-400"> HomOfix Company Expert</span>
               </h1>
               <p className="text-xl lg:text-2xl text-blue-100">
-                At HomOfix Company, we understand that the greatest need of every service expert is financial stability and growth. This is why we have created a system in which your talent directly corresponds to income and reward in the long term.
-
+              HomOfix Company ensures financial stability and growth for our Service Experts.  Improve your skills, deliver better service, and satisfy more customers, and you will earn more and grow exponentially.
               </p>
               {/* <div className="flex flex-col sm:flex-row gap-4">
                 <button 
@@ -326,7 +325,7 @@ export default function PartnerPage() {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who have already transformed their careers with HomoFix
+          Become a HomOfix Company Expert and unlock financial stability, growth, and recognition for your skills.
           </p>
           <button 
             onClick={() => setIsFormVisible(true)}

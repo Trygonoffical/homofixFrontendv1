@@ -47,7 +47,7 @@ export default function Partner() {
                 </div>
                 <div className="flex justify-center">
                     <Image   
-                        src="/assets/imgs/partner.png"  
+                        src="/assets/imgs/partner3.png"  
                         width={400} 
                         height={400}
                         alt="Professional Partner" 
