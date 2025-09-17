@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from "react";
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Footer = () => {
   
@@ -73,16 +74,38 @@ const Footer = () => {
             </div>
             <div className="mb-6">
               <h4 className="text-gray-800 font-semibold mb-2">DOWNLOAD OUR APP</h4>
+              <div className='flex gap-2 justify-start items-center '>
               <a href="https://play.google.com/store/apps/details?id=com.homofix.homo_fix" 
                  target="_blank" 
-                 rel="noopener noreferrer">
-                <img 
+                 rel="noopener noreferrer"
+                 
+                 >
+                <Image 
                   src="/assets/imgs/googlepaystore.webp" 
                   alt="Get it on Google Play" 
                   className="max-w-[140px]"
+                  width={140}
+                  height={140}
                 />
               </a>
+              <a href="https://apps.apple.com/us/app/homofix-company/id6749955867" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 
+                 >
+                <Image 
+                  src="/assets/imgs/appstore.png" 
+                  alt="Get it on Apple store" 
+                  className="max-w-[160px]"
+                  width={160}
+                  height={160}
+                />
+              </a>
+              </div>
+              
             </div>
+            
+            
           </div>
 
           {/* Company */}
@@ -149,13 +172,30 @@ const Footer = () => {
                 <h4 className="text-gray-800 text-sm font-semibold mb-2">DOWNLOAD OUR APP</h4>
                 <a href="https://play.google.com/store/apps/details?id=com.homofix.homo_fix" 
                   target="_blank" 
-                  rel="noopener noreferrer">
-                  <img 
+                  rel="noopener noreferrer"
+                  
+                  >
+                  <Image 
                     src="/assets/imgs/googlepaystore.webp" 
                     alt="Get it on Google Play" 
                     className="max-w-[140px]"
+                    width={140}
+                    height={140}
                   />
                 </a>
+                <a href="https://apps.apple.com/us/app/homofix-company/id6749955867" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 className='-ml-2 block mt-1'
+                 >
+                <Image 
+                  src="/assets/imgs/appstore.png" 
+                  alt="Get it on Apple store" 
+                  className="max-w-[160px]"
+                  width={160}
+                  height={160}
+                />
+              </a>
               </div>
             </div>
             <div className='px-0 mb-5'>

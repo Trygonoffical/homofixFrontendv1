@@ -77,7 +77,7 @@ export default function PartnerPage() {
     {
       icon: "💰",
       title: "Competitive Earnings",
-      description: "Earn attractive commissions on every service completed"
+      description: "Get paid well for every service you deliver."
     },
     {
       icon: "📱",
@@ -119,119 +119,119 @@ export default function PartnerPage() {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-4 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 md:gap-12 items-center ">
-                         <div className="order-2 bg-white rounded-2xl mt-5 md:mt-0 p-6 shadow-xl">
-               {/* <h3 className="text-2xl font-bold text-gray-800 mb-6">Register as Professional</h3> */}
-               
-               {successMsg && (
-                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center">
-                   <CheckIcon className="w-5 h-5 mr-2" />
-                   {successMsg}
-                 </div>
-               )}
-               {errorMsg && (
-                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                   {errorMsg}
-                 </div>
-               )}
-               
-               <div className="grid md:grid-cols-2 gap-4">
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                     Full Name *
-                   </label>
-                   <input
-                     type="text"
-                     value={name}
-                     onChange={(e) => setName(e.target.value)}
-                     className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                     placeholder="Enter your full name"
-                   />
-                 </div>
-                 
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                     Mobile Number *
-                   </label>
-                   <input
-                     type="tel"
-                     value={mno}
-                     onChange={(e) => setMno(e.target.value)}
-                     className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                     placeholder="Enter your mobile number"
-                   />
-                 </div>
-                 
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                     Email Address (Optional)
-                   </label>
-                   <input
-                     type="email"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                     className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                     placeholder="Enter your email"
-                   />
-                 </div>
-                 
-                 <div>
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                     Expertise Type *
-                   </label>
-                   <select
-                     value={exType}
-                     onChange={(e) => setExType(e.target.value)}
-                     className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                   >
-                     <option value="">Select your expertise</option>
-                     {expertiseAreas.map((area, index) => (
-                       <option key={index} value={area}>{area}</option>
-                     ))}
-                   </select>
-                 </div>
-               </div>
-               
-               <div className="mt-4">
-                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                   Full Address *
-                 </label>
-                 <textarea
-                   value={address}
-                   onChange={(e) => setAddress(e.target.value)}
-                   rows="3"
-                   className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                   placeholder="Enter your complete address"
-                 ></textarea>
-               </div>
-               
-               <div className="mt-4">
-                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                   Resume (Optional - PDF only)
-                 </label>
-                 <input
-                   type="file"
-                   ref={fileInputRef}
-                   onChange={(e) => setSelectedFile(e.target.files[0])}
-                   accept=".pdf"
-                   className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 />
-               </div>
-               
-               <button
-                 onClick={handleSendformData}
-                 className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300"
-               >
-                 Submit Application
-               </button>
-             </div>
+            <div className="order-2 bg-white rounded-2xl mt-5 md:mt-0 p-6 shadow-xl">
+              {/* <h3 className="text-2xl font-bold text-gray-800 mb-6">Register as Professional</h3> */}
+              
+              {successMsg && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center">
+                  <CheckIcon className="w-5 h-5 mr-2" />
+                  {successMsg}
+                </div>
+              )}
+              {errorMsg && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                  {errorMsg}
+                </div>
+              )}
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mobile Number *
+                  </label>
+                  <input
+                    type="tel"
+                    value={mno}
+                    onChange={(e) => setMno(e.target.value)}
+                    className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your mobile number"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address (Optional)
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your email"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Expertise Type *
+                  </label>
+                  <select
+                    value={exType}
+                    onChange={(e) => setExType(e.target.value)}
+                    className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select your expertise</option>
+                    {expertiseAreas.map((area, index) => (
+                      <option key={index} value={area}>{area}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Full Address *
+                </label>
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  rows="3"
+                  className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your complete address"
+                ></textarea>
+              </div>
+              
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Resume (Optional - PDF only)
+                </label>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={(e) => setSelectedFile(e.target.files[0])}
+                  accept=".pdf"
+                  className="w-full text-black px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              
+              <button
+                onClick={handleSendformData}
+                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300"
+              >
+                Submit Application
+              </button>
+            </div>
             <div className="space-y-6 order-1 ">
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 Become a 
-                <span className="text-yellow-400"> Professional Partner</span>
+                <span className="text-yellow-400"> HomOfix Company Expert</span>
               </h1>
               <p className="text-xl lg:text-2xl text-blue-100">
-                Join thousands of skilled professionals earning with HomoFix. 
-                Grow your business and reach more customers.
+                At HomOfix Company, we understand that the greatest need of every service expert is financial stability and growth. This is why we have created a system in which your talent directly corresponds to income and reward in the long term.
+
               </p>
               {/* <div className="flex flex-col sm:flex-row gap-4">
                 <button 
@@ -339,7 +339,7 @@ export default function PartnerPage() {
 
       {/* Registration Form Modal */}
       {isFormVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[1500] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-center">

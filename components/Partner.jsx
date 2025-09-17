@@ -30,17 +30,17 @@ export default function Partner() {
             <div className="grid md:grid-cols-2 gap-8 items-center p-8 lg:p-12">
                 <div className="text-white space-y-6">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                        Become a <span className="text-yellow-400">Professional Partner</span>
+                        Become a <span className="text-yellow-400">HomOfix Company Expert</span>
                     </h2>
                     <p className="text-lg md:text-xl text-blue-100">
                         Join thousands of skilled professionals and grow your business with HomoFix. 
                         Earn competitive rates while helping customers across the city.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Link href="/partner" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                        <Link href="/experts" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
                             Register Now
                         </Link>
-                        <Link href="/partner" className="border-2 border-white hover:bg-white hover:text-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
+                        <Link href="/experts" className="border-2 border-white hover:bg-white hover:text-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300">
                             Learn More
                         </Link>
                     </div>
