@@ -27,14 +27,13 @@ export default function Partner() {
   return (
     <section className="container mx-auto mt-16 mb-16 p-2">
         <div className="bg-gradient-to-r from-basecolor to-lightbasecolor rounded-2xl overflow-hidden shadow-2xl">
-            <div className="grid md:grid-cols-2 gap-8 items-center p-8 lg:p-12">
-                <div className="text-white space-y-6">
+            <div className="grid md:grid-cols-2 gap-8 items-center  px-8 lg:px-12">
+                <div className="text-white space-y-6 mt-12 md:mt-0">
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
                         Become a <span className="text-yellow-400">HomOfix Company Expert</span>
                     </h2>
                     <p className="text-lg md:text-xl text-blue-100">
-                        Join thousands of skilled professionals and grow your business with HomoFix. 
-                        Earn competitive rates while helping customers across the city.
+                    Become a HomOfix Company Expert and unlock financial stability, growth, and recognition for your skills.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/experts" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
