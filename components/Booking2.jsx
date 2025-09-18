@@ -574,7 +574,7 @@ const handleOfflinePayment = () => {
     // setBookingCompleted(true);
     // Congratsmesg();
     // setCongBookingShow(true);
-    router.push('/order/thankyou');
+    // router.push('/order/thankyou');
   }
   
 
@@ -857,7 +857,7 @@ const handleOnlinePayment2 = async () => {
   }
   // const bookingDateTimeString = `${bookingDate}T${bookingTime}:00+05:30`; 
   // setBookingDateTime(bookingDateTimeString);
-  if(bookingDateTime != '' && add != '' && area != '' || originalCity != '' ||  state !='' || zip!='' && name != ''){
+  if(bookingDate != '' && bookingTime != '' && add != '' && area != '' || originalCity != '' ||  state !='' || zip!='' && name != ''){
     setErrorMsg('');
     setErrorMsgName('');
     setErrorMsgAdd('');
@@ -896,12 +896,13 @@ const handleOnlinePayment2 = async () => {
             // setBookingCompleted(true);
             // Congratsmesg();
             // setCongBookingShow(true);
-            router.push('/order/thankyou');
+            // router.push('/order/thankyou');
           }
       },
       theme: "#123456" // color hex
     }
   easebuzzCheckout.initiatePayment(options);
+  
   }
   
 }
@@ -1009,6 +1010,7 @@ const handleOnlinePaymentWithProcessing = () => {
   setBookingProcessing(true);
   handleOnlinePayment2().finally(() => {
     setBookingProcessing(false);
+    router.push('/order/thankyou');
   });
 };
 
@@ -1021,6 +1023,7 @@ const handleOfflinePaymentWithProcessing = () => {
   setBookingProcessing(true);
   Promise.resolve(handleOfflinePayment()).finally(() => {
     setBookingProcessing(false);
+    router.push('/order/thankyou');
   });
 };
 
