@@ -253,7 +253,7 @@ const Footer = () => {
     <h2 className=' md:text-2xl mb-3 text-left flex flex-wrap font-semibold'>Locations</h2>
 
     {pages.length>0 && pages.map((custpage , idx)=>  
-            <div key={idx} className='inline-block'>
+            <div key={idx} className='inline'>
             <Link  href={`/page/${slugify(custpage.title)}`} className="text-gray-50 hover:text-gray-200 text-xs ">
                   {custpage.title} 
               </Link> 
