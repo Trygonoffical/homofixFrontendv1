@@ -25,7 +25,6 @@ export default function CustomPagesClient({ params }) {
 
             if (matchingPage) {
                 setPageData(matchingPage);
-                // console.log("Found matching page:", matchingPage);
             } else {
                 // console.log("No matching page found");
                 // Redirect to 404 page if no matching page is found
