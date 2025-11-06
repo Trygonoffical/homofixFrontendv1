@@ -252,4 +252,3 @@ Allow: /blogs/cleaning-tips-to-welcome-goddess-durga-this-navratri
 Allow: /blogs/how-to-store-and-maintain-your-ac-in-winter
 Allow: /blogs/why-you-should-book-professional-sofa-cleaning-in-delhi
 Sitemap: /sitemap.xml
-Sitemap: /sitemap.xml

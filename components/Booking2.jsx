@@ -961,6 +961,7 @@ const CheckSlotAvailability = async (selectedDate) => {
     "subcategory_ids": [subcategoryID.id]
   }
   console.log('Slotpayload:', payload);
+  console.log('authToken:', authToken);
   try {
     const response = await fetch(baseUrl, {
       method: "POST",
