@@ -159,10 +159,10 @@ const gmap = () => {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
               <a 
-                href="mailto:info@homofixcompany.com" 
+                href="mailto:support@homofixcompany.com" 
                 className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
               >
-                info@homofixcompany.com
+                support@homofixcompany.com
               </a>
             </div>
 
@@ -175,7 +175,7 @@ const gmap = () => {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Support Hours</h3>
               <p className="text-gray-600">Monday - Sunday</p>
-              <p className="text-green-600 font-medium">8:00 AM - 8:00 PM</p>
+              <p className="text-green-600 font-medium">9:00 AM - 6:00 PM</p>
             </div>
           </div>
         </div>
