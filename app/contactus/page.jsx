@@ -31,7 +31,7 @@ const page = () => {
                 </svg>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Call Us</h3>
-              <p className="text-sm text-gray-600">Available 8AM - 8PM</p>
+              <p className="text-sm text-gray-600">Available 9AM - 6PM</p>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">

@@ -469,7 +469,7 @@ const BookingTab = ({bookings , userProfileInfo}) => {
                                                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                                             </svg>
                                                             <span className="text-sm text-amber-800">
-                                                                <span className="font-medium">For Support Call (between 8am - 8pm):</span>
+                                                                <span className="font-medium">For Support Call (between 9am - 6pm):</span>
                                                                 <br />
                                                                 <a href="tel:+918800855760" className="text-amber-900 font-semibold hover:text-amber-700 transition-colors duration-200">
                                                                     +91-88-00-855-760
