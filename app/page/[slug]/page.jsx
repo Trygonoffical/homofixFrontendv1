@@ -131,31 +131,31 @@ export async function generateMetadata({ params }) {
       break;
 
     // AC Repair & Service city pages
-    case 'ac-repair-and-service-in-delhi':
+    case 'ac-service-in-delhi':
       dynamicTitle = 'Affordable AC Repair & Service – Save Up to ₹300';
       dynamicDescription = 'Book the HomOfix Company\'s affordable AC repair & service today and save up to ₹300. Get expert cooling solutions, fast repairs & hassle-free maintenance.';
       break;
-    case 'ac-repair-and-service-in-faridabad':
+    case 'ac-service-in-faridabad':
       dynamicTitle = 'Best AC Repair & Maintenance – Save Up 30% Now';
       dynamicDescription = 'Get the best AC repair & maintenance at HomOfix Company. Save up to 30% now and enjoy efficient cooling and fresh air with expert care at your doorstep.';
       break;
-    case 'ac-repair-and-service-in-noida':
+    case 'ac-service-in-noida':
       dynamicTitle = 'Air Conditioner repair & servicing Near You | Book Now';
       dynamicDescription = 'Book now the HomOfix Company\'s air conditioner repair & servicing near you. With fast and expert care to keep your AC cooling efficiently at affordable prices.';
       break;
-    case 'ac-repair-and-service-in-gurugram':
+    case 'ac-service-in-gurugram':
       dynamicTitle = 'Best AC Repair in Gurugram | Quick & Reliable Service';
       dynamicDescription = 'Quick & reliable AC repair and service in Gurugram by HomOfix Company. Book now for professional service, fast repairs & efficient cooling at your doorstep.';
       break;
-    case 'ac-repair-and-service-in-ghaziabad':
+    case 'ac-service-in-ghaziabad':
       dynamicTitle = 'Complete AC Repair & Service – Flat 25% Discount';
       dynamicDescription = 'Book now with HomOfix Company\'s complete AC repair & service and save flat 25%. Expert repair, maintenance & quick servicing for long-lasting cooling comfort.';
       break;
-    case 'ac-repair-and-service-in-hyderabad':
+    case 'ac-service-in-hyderabad':
       dynamicTitle = 'Affordable AC Repair Service | Starting at just ₹399';
       dynamicDescription = 'Save time & money with HomOfix Company\'s AC repair and service starting at just ₹399. Fast and reliable repairs to keep your AC cool & efficient.';
       break;
-    case 'ac-repair-and-service-in-kanpur':
+    case 'ac-service-in-kanpur':
       dynamicTitle = 'Budget-Friendly AC Repairing Service – Book Now Today';
       dynamicDescription = 'Get the budget-friendly AC repairing service with HomOfix Company today. Expert repair, quick service & affordable prices for long-lasting cooling comfort.';
       break;
