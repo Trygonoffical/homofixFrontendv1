@@ -1,4 +1,5 @@
 import ProductDetailPage from './data';
+import { seoData } from './seoMap';
 
 export async function generateMetadata({ params }) {
   const baseUrl = 'https://www.homofixcompany.com';
@@ -7,9 +8,11 @@ export async function generateMetadata({ params }) {
   const encodedProductId = encodeURIComponent(params.productId);
   const canonicalUrl = `${baseUrl}/category/${encodedSlug}/product/${encodedProductId}`;
   
-  // You can fetch product data here to generate dynamic metadata
-  const dynamicTitle = `Product Details - HomOfix Company`;
-  const dynamicDescription = 'View detailed information and book our professional services';
+  // Look up SEO data by productId
+  const productSEO = seoData[params.productId];
+
+  const dynamicTitle = productSEO?.title || `Product Details - HomOfix Company`;
+  const dynamicDescription = productSEO?.description || 'View detailed information and book our professional services';
 
   return {
     title: dynamicTitle,

@@ -254,4 +254,4 @@ Allow: /blogs/how-to-store-and-maintain-your-ac-in-winter
 Allow: /blogs/why-you-should-book-professional-sofa-cleaning-in-delhi
 Allow: /blogs/professional-deep-kitchen-cleaning-tips
 Allow: /blogs/essential-tips-to-prepare-your-home-for-winter
-Sitemap: https://www.homofixcompany.com/sitemap.xml
+Sitemap: /sitemap.xml
