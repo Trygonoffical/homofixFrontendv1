@@ -3,7 +3,7 @@
 const gmap = () => {
   return (
     <section className="bg-gray-50 py-16">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="address">
         {/* Header */}
         {/* <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h1>
@@ -15,9 +15,9 @@ const gmap = () => {
         
 
         {/* Office Locations Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16" >
           {/* Registered Office - Kanpur */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300" >
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
                 <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
