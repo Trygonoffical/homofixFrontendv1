@@ -461,8 +461,10 @@ export default function Example() {
                   <img src="/login.png" width={50} alt="" />  
                   
                   <span className='pt-4'>Verification Code:</span> 
+                  
                   <button
                       type="button"
+
                       onClick={() => {
                         setVerificationCode('')
                         setPhone('')
@@ -476,12 +478,13 @@ export default function Example() {
                     </button> 
                   </Dialog.Title>
                   <div className="my-5 text-center">
-                  
+                 <span className='text-red text-sm font-semibold pt-4 mr-5'>Enter OTP - 12345</span>  
                   <input
                       type="number"
                       value={verificationCode}
                       onChange={handleVerificationCodeChange}
-                      placeholder='OTP'
+                      placeholder='12345'
+                      defaultValue="12345"
                       className='w-full py-2 px-2 border mt-2 form-input' 
                     />
                   <button onClick={handleVerifyOTP} className='bg-basecolor text-white  py-2 px-4 my-3 mr-9 rounded '>Verify OTP</button>
