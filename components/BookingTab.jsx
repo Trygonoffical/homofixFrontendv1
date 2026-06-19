@@ -472,8 +472,8 @@ const BookingTab = ({bookings , userProfileInfo}) => {
                                                                 <span className="text-sm text-amber-800">
                                                                     <span className="font-medium">For Call Support <span className="text-xs"> (between 9am - 6pm):</span></span>
                                                                     <br />
-                                                                    <a href="tel:+918800855760" className="text-amber-900 font-semibold hover:text-amber-700 transition-colors duration-200">
-                                                                        +91-88-00-855-760
+                                                                    <a href="tel:+916392146605" className="text-amber-900 font-semibold hover:text-amber-700 transition-colors duration-200">
+                                                                        +91-639-214-6605
                                                                     </a>
                                                                 </span>
                                                             </div>
